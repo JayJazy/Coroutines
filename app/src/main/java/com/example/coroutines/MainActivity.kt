@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         // 스레드 실행
         threadBtn.setOnClickListener {
-            startThread(randomTimeMillis).start()
+            startThread(randomTimeMillis)
         }
 
 
@@ -37,18 +37,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-
     }
 
 
-    private fun startThread(randomTimeMillis: Long): Thread {
-        val thread = Thread{
+    private fun startThread(randomTimeMillis: Long) {
+        Thread {
             Thread.sleep(randomTimeMillis)
             threadCount += 1
-            Log.d("Thread", "${threadCount}번 스레드(${randomTimeMillis}초)")
-        }
-        return thread
+            Log.d("TAG", "${threadCount}번 스레드(${randomTimeMillis}초)")
+        }.start()
     }
 
 
